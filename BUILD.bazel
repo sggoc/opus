@@ -1,0 +1,30 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "decoder.go",
+        "encoder.go",
+        "errors.go",
+        "opus.go",
+    ],
+    cgo = True,
+    #keep
+    clinkopts = [
+        "-lopus",
+    ],
+    importpath = "repo.jazznetworks.com/vaion/vaion/lib/opus",
+    visibility = ["//visibility:public"],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = [
+        "decoder_test.go",
+        "encoder_test.go",
+        "opus_test.go",
+        "utils_test.go",
+    ],
+    data = glob(["testdata/**"]),
+    embed = [":go_default_library"],
+)

@@ -10,8 +10,7 @@ import (
 )
 
 /*
-#cgo pkg-config: opus
-#include <opus.h>
+#include <opus/opus.h>
 
 int
 bridge_decoder_get_last_packet_duration(OpusDecoder *st, opus_int32 *samples)
